@@ -10,7 +10,7 @@ import { ThemeProvider } from './context/ThemeContext';
 function App() {
   return (
     <ThemeProvider>
-      <div className="min-h-screen bg-gradient-to-b from-purple-200 via-pink-100 to-pink-200 dark:bg-gradient-to-b dark:from-blue-950 dark:via-blue-900 dark:to-black text-black dark:text-gray-100 transition-colors duration-300">
+      <div className="min-h-screen bg-light-bg dark:bg-dark-bg text-light-text dark:text-dark-text transition-colors duration-300">
         <AnimatedBackground />
         <NavigationDock />
 

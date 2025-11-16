@@ -18,34 +18,204 @@
     background-color: rgb(243, 244, 246);
   }
 
-  ::-webkit-scrollbar-track {
-    @media (prefers-color-scheme: dark) {
-      background-color: rgb(17, 24, 39);
-    }
+  .dark ::-webkit-scrollbar-track {
+    background-color: rgb(17, 24, 39);
   }
 
   ::-webkit-scrollbar-thumb {
-    background-color: rgb(236, 72, 153);
+    background-color: rgb(59, 130, 246);
     border-radius: 9999px;
   }
 
   ::-webkit-scrollbar-thumb:hover {
-    background-color: rgb(236, 72, 153);
+    background-color: rgb(37, 99, 235);
+  }
+
+  /* Light Theme - Default */
+  html {
+    background-color: #f8f7ff;
+    color: #2c1d5c;
+  }
+
+  /* Dark Theme - When .dark class is added to html */
+  html.dark {
+    background-color: #0f0e1a;
+    color: #e5d9ff;
+  }
+
+  body {
+    transition: background-color 0.3s ease, color 0.3s ease;
   }
 }
 
 @layer components {
-  .btn-gradient {
-    @apply bg-gradient-to-r from-[rgb(236,72,153)] to-[rgb(168,85,247)] text-white font-semibold;
+  /* ============================================
+     TEXT COLOR UTILITIES - LIGHT & DARK
+     ============================================ */
+  
+  .text-heading {
+    font-weight: 700;
+    color: #2c1d5c;
   }
+
+  html.dark .text-heading {
+    color: #e5d9ff;
+  }
+
+  .text-paragraph {
+    color: #5a4a7f;
+  }
+
+  html.dark .text-paragraph {
+    color: #c4a8ff;
+  }
+
+  .text-small {
+    color: #8b7aa3;
+  }
+
+  html.dark .text-small {
+    color: #a099b3;
+  }
+
+  /* ============================================
+     CARD UTILITIES - LIGHT & DARK
+     ============================================ */
+
+  .card-theme {
+    background-color: #f3f0ff;
+    border: 1px solid #d4c5e8;
+    border-radius: 0.5rem;
+    box-shadow: 0 10px 15px -3px rgba(79, 70, 229, 0.1);
+    transition: box-shadow 0.3s ease, background-color 0.3s ease, border-color 0.3s ease;
+  }
+
+  html.dark .card-theme {
+    background-color: #1a1829;
+    border-color: #4a3f7f;
+    box-shadow: 0 10px 15px -3px rgba(167, 139, 250, 0.15);
+  }
+
+  .card-theme:hover {
+    box-shadow: 0 20px 25px -5px rgba(79, 70, 229, 0.2);
+  }
+
+  html.dark .card-theme:hover {
+    box-shadow: 0 20px 25px -5px rgba(167, 139, 250, 0.25);
+  }
+
+  /* ============================================
+     SECTION TITLES - LIGHT & DARK
+     ============================================ */
 
   .section-title {
-    @apply text-4xl font-bold text-gray-800 sm:text-5xl dark:text-white;
+    font-size: 2.25rem;
+    font-weight: 700;
+    text-align: center;
+    color: #2c1d5c;
+    transition: color 0.3s ease;
   }
 
-  .glass-morphism {
-    @apply border rounded-lg bg-white/10 dark:bg-black/30 backdrop-blur-md border-white/20;
+  html.dark .section-title {
+    color: #e5d9ff;
   }
+
+  @media (min-width: 640px) {
+    .section-title {
+      font-size: 3rem;
+    }
+  }
+
+  /* ============================================
+     BUTTON UTILITIES - LIGHT & DARK
+     ============================================ */
+
+  .btn-primary {
+    position: relative;
+    padding: 1rem 2rem;
+    overflow: hidden;
+    font-weight: 600;
+    color: white;
+    transition: all 0.5s ease;
+    border: none;
+    border-radius: 0.75rem;
+    cursor: pointer;
+    background: linear-gradient(
+      to right,
+      #4f46e5,
+      #7c3aed,
+      #3b82f6
+    );
+    box-shadow: 0 4px 6px rgba(79, 70, 229, 0.2);
+  }
+
+  .btn-primary:hover {
+    transform: scale(1.05);
+    box-shadow: 0 10px 20px rgba(79, 70, 229, 0.3);
+  }
+
+  html.dark .btn-primary {
+    background: linear-gradient(
+      to right,
+      #a78bfa,
+      #d8b4fe,
+      #e879f9
+    );
+    box-shadow: 0 4px 6px rgba(167, 139, 250, 0.3);
+  }
+
+  html.dark .btn-primary:hover {
+    box-shadow: 0 10px 20px rgba(167, 139, 250, 0.4);
+  }
+
+  .btn-secondary {
+    position: relative;
+    padding: 1rem 2rem;
+    font-weight: 600;
+    border: 2px solid #4f46e5;
+    border-radius: 0.75rem;
+    background-color: transparent;
+    color: #4f46e5;
+    cursor: pointer;
+    transition: all 0.5s ease;
+  }
+
+  .btn-secondary:hover {
+    background-color: #4f46e5;
+    color: white;
+    transform: scale(1.05);
+  }
+
+  html.dark .btn-secondary {
+    border-color: #a78bfa;
+    color: #a78bfa;
+  }
+
+  html.dark .btn-secondary:hover {
+    background-color: #a78bfa;
+    color: #0f0e1a;
+  }
+
+  /* ============================================
+     GLASS MORPHISM - LIGHT & DARK
+     ============================================ */
+
+  .glass-morphism {
+    border: 1px solid rgba(212, 197, 232, 0.3);
+    border-radius: 0.5rem;
+    background-color: rgba(243, 240, 255, 0.6);
+    backdrop-filter: blur(30px);
+    transition: all 0.3s ease;
+  }
+
+  html.dark .glass-morphism {
+    border-color: rgba(212, 197, 232, 0.2);
+    background-color: rgba(26, 24, 41, 0.6);
+  }
+
+  /* ============================================
+     TEXT SHADOWS
+     ============================================ */
 
   .text-shadow-sm {
     text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
@@ -59,21 +229,25 @@
     text-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
   }
 
+  /* ============================================
+     ANIMATIONS
+     ============================================ */
+
   @keyframes blob {
     0%,
     100% {
       transform: translate(0, 0) scale(1);
     }
     33% {
-      transform: translate(30px, -50px) scale(1.1);
+      transform: translate(40px, -70px) scale(1.15);
     }
     66% {
-      transform: translate(-20px, 20px) scale(0.9);
+      transform: translate(-30px, 30px) scale(0.95);
     }
   }
 
   .animate-blob {
-    animation: blob 7s infinite;
+    animation: blob 8s ease-in-out infinite;
   }
 
   .animation-delay-2000 {
@@ -83,4 +257,119 @@
   .animation-delay-4000 {
     animation-delay: 4s;
   }
+
+  /* ============================================
+     RADIAL GRADIENT - HERO SECTION
+     ============================================ */
+
+  .radial-gradient {
+    background: radial-gradient(
+      ellipse 120% 100% at 50% 0%,
+      rgba(79, 70, 229, 0.15),
+      rgba(168, 85, 247, 0.08),
+      transparent 80%
+    );
+    transition: background 0.3s ease;
+  }
+
+  html.dark .radial-gradient {
+    background: radial-gradient(
+      ellipse 120% 100% at 50% 0%,
+      rgba(167, 139, 250, 0.25),
+      rgba(232, 121, 249, 0.12),
+      transparent 80%
+    );
+  }
+
+  /* ============================================
+     CARD GLOW EFFECTS
+     ============================================ */
+
+  .card-glow {
+    box-shadow: 0 0 20px rgba(79, 70, 229, 0.1);
+    transition: box-shadow 0.5s ease;
+  }
+
+  .card-glow:hover {
+    box-shadow: 0 0 30px rgba(79, 70, 229, 0.2);
+  }
+
+  html.dark .card-glow {
+    box-shadow: 0 0 20px rgba(167, 139, 250, 0.15);
+  }
+
+  html.dark .card-glow:hover {
+    box-shadow: 0 0 30px rgba(167, 139, 250, 0.3);
+  }
+
+  /* ============================================
+     ICON UTILITIES - LIGHT & DARK
+     ============================================ */
+
+  .icon-primary {
+    color: #4a3f7f;
+    transition: color 0.3s ease;
+  }
+
+  html.dark .icon-primary {
+    color: #d4a5ff;
+  }
+
+  /* ============================================
+     BORDER UTILITIES - LIGHT & DARK
+     ============================================ */
+
+  .border-primary {
+    border-color: #d4c5e8;
+    transition: border-color 0.3s ease;
+  }
+
+  html.dark .border-primary {
+    border-color: #4a3f7f;
+  }
+
+  /* ============================================
+     INPUT FIELD STYLING - LIGHT & DARK
+     ============================================ */
+
+  input,
+  textarea {
+    background-color: #f3f0ff;
+    color: #2c1d5c;
+    border: 1px solid #d4c5e8;
+    transition: all 0.3s ease;
+  }
+
+  html.dark input,
+  html.dark textarea {
+    background-color: #1a1829;
+    color: #e5d9ff;
+    border-color: #4a3f7f;
+  }
+
+  input:focus,
+  textarea:focus {
+    outline: none;
+    border-color: #4f46e5;
+    box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.1);
+  }
+
+  html.dark input:focus,
+  html.dark textarea:focus {
+    border-color: #a78bfa;
+    box-shadow: 0 0 0 3px rgba(167, 139, 250, 0.1);
+  }
+
+  /* ============================================
+     SCROLLBAR STYLING
+     ============================================ */
+
+  html.dark ::-webkit-scrollbar-thumb {
+    background-color: rgb(168, 85, 247);
+  }
+
+  html.dark ::-webkit-scrollbar-thumb:hover {
+    background-color: rgb(196, 165, 255);
+  }
 }
+

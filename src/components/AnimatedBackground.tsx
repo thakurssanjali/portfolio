@@ -64,15 +64,16 @@ export const AnimatedBackground = () => {
 
     for (let i = 0; i < particleCount; i++) {
       // Create variety: mix of small (30%), medium (50%), and large (20%) particles
+      // Increased 1.7x size for decorative elements
       const sizeVariety = Math.random();
       let baseSize: number;
 
       if (sizeVariety < 0.3) {
-        baseSize = Math.random() * 0.8 + 0.4; // Small: 0.4-1.2
+        baseSize = Math.random() * 1.36 + 0.68; // Small: 0.68-2.04 (was 0.4-1.2)
       } else if (sizeVariety < 0.8) {
-        baseSize = Math.random() * 1.2 + 1; // Medium: 1-2.2
+        baseSize = Math.random() * 2.04 + 1.7; // Medium: 1.7-3.74 (was 1-2.2)
       } else {
-        baseSize = Math.random() * 1.8 + 2.2; // Large: 2.2-4
+        baseSize = Math.random() * 3.06 + 3.74; // Large: 3.74-6.8 (was 2.2-4)
       }
 
       const colorIndex = theme === 'light' 
@@ -84,10 +85,10 @@ export const AnimatedBackground = () => {
         y: Math.random() * canvas.height - canvas.height,
         size: baseSize,
         baseSize: baseSize,
-        speed: Math.random() * 0.4 + 0.2,
+        speed: Math.random() * 0.3 + 0.15,
         rotation: Math.random() * Math.PI * 2,
-        rotationSpeed: (Math.random() - 0.5) * 0.05,
-        opacity: Math.random() * 0.5 + 0.3,
+        rotationSpeed: (Math.random() - 0.5) * 0.03,
+        opacity: Math.random() * 0.4 + 0.25,
         colorIndex: colorIndex,
       });
     }
@@ -103,14 +104,14 @@ export const AnimatedBackground = () => {
       const gradient = ctx.createLinearGradient(0, 0, 0, canvas.height);
 
       if (theme === 'light') {
-        // Light theme: pastel purple at top to pink at bottom (darker pastel)
-        gradient.addColorStop(0, 'rgba(225, 190, 231, 1)');      // Pastel purple at top
-        gradient.addColorStop(0.2, 'rgba(230, 200, 240, 0.98)'); // Transitioning
-        gradient.addColorStop(0.5, 'rgba(240, 210, 235, 0.96)'); // Mid gradient
-        gradient.addColorStop(0.8, 'rgba(255, 215, 230, 0.97)'); // Near pink
-        gradient.addColorStop(1, 'rgba(255, 200, 220, 1)');      // Pastel pink at bottom
+        // Light theme: elegant pastel violet to blue gradient
+        gradient.addColorStop(0, 'rgba(237, 233, 254, 1)');      // Very light violet at top
+        gradient.addColorStop(0.25, 'rgba(230, 230, 250, 0.99)'); // Soft lavender
+        gradient.addColorStop(0.5, 'rgba(240, 245, 255, 0.98)');  // Light blue-white
+        gradient.addColorStop(0.75, 'rgba(219, 234, 254, 0.99)'); // Pale blue
+        gradient.addColorStop(1, 'rgba(243, 232, 255, 1)');       // Soft lavender at bottom
       } else {
-        // Dark theme: deep blue to black gradient
+        // Dark theme: deep blue to black gradient with better starfield feel
         gradient.addColorStop(0, 'rgba(30, 58, 138, 1)');        // Deep blue at top
         gradient.addColorStop(0.3, 'rgba(25, 50, 120, 0.98)');   // Darker blue
         gradient.addColorStop(0.6, 'rgba(20, 35, 90, 0.96)');    // Darker
@@ -123,7 +124,7 @@ export const AnimatedBackground = () => {
 
       // Draw and update particles
       particlesRef.current.forEach((particle) => {
-      // Falling effect
+      // Falling effect with smoother motion
         particle.y += particle.speed;
         particle.rotation += particle.rotationSpeed;
 
@@ -178,7 +179,7 @@ export const AnimatedBackground = () => {
             const petalX = Math.cos(angle) * petalSize;
             const petalY = Math.sin(angle) * petalSize;
 
-            ctx.fillStyle = `rgba(${color.r}, ${color.g}, ${color.b}, ${opacity * 0.8})`;
+            ctx.fillStyle = `rgba(${color.r}, ${color.g}, ${color.b}, ${opacity * 0.7})`;
             ctx.beginPath();
             ctx.ellipse(petalX, petalY, petalSize * 0.6, petalSize, 0, 0, Math.PI * 2);
             ctx.fill();
@@ -186,18 +187,18 @@ export const AnimatedBackground = () => {
 
           // Draw flower center with complementary shade
           const centerShade = Math.max(200, Math.min(255, color.r - 50));
-          ctx.fillStyle = `rgba(${centerShade}, ${Math.max(150, color.g - 30)}, ${Math.max(150, color.b - 30)}, ${opacity})`;
+          ctx.fillStyle = `rgba(${centerShade}, ${Math.max(150, color.g - 30)}, ${Math.max(150, color.b - 30)}, ${opacity * 0.8})`;
           ctx.beginPath();
           ctx.arc(0, 0, petalSize * 0.5, 0, Math.PI * 2);
           ctx.fill();
 
-          // Add glow when hovered
+          // Add subtle glow when hovered
           if (distance < hoverDistance) {
-            ctx.shadowColor = `rgba(${color.r}, ${color.g}, ${color.b}, 0.8)`;
-            ctx.shadowBlur = 25;
-            ctx.fillStyle = `rgba(${color.r}, ${color.g}, ${color.b}, ${opacity * 0.2})`;
+            ctx.shadowColor = `rgba(${color.r}, ${color.g}, ${color.b}, 0.6)`;
+            ctx.shadowBlur = 30;
+            ctx.fillStyle = `rgba(${color.r}, ${color.g}, ${color.b}, ${opacity * 0.15})`;
             ctx.beginPath();
-            ctx.arc(0, 0, petalSize * 3, 0, Math.PI * 2);
+            ctx.arc(0, 0, petalSize * 3.5, 0, Math.PI * 2);
             ctx.fill();
           }
         } else {
