@@ -36,8 +36,8 @@ export const projects: Project[] = [
       'Tailwind CSS',
       'JWT Auth'
     ],
-    github: 'https://github.com',
-    live: 'https://example.com',
+    github: 'https://github.com/thakurssanjali/velo-rapido',
+    live: 'https://github.com/thakurssanjali/velo-rapido',
     tags: ['Full Stack', 'React', 'Node', 'Dashboard'],
   },
   {
@@ -47,8 +47,8 @@ export const projects: Project[] = [
     longDescription:
       'A desktop-based dice game developed using Java Swing, supporting multiple players with engaging, round-based gameplay. Implements core game mechanics including real-time tie detection, win tracking, randomized dice roll logic, and multi-round support. The project features a clean and intuitive GUI for a smooth user experience and is packaged as a runnable .jar file for seamless cross-platform execution without additional setup.',
     technologies: ['Java', 'Swing', 'OOP', 'JAR Packaging'],
-    github: 'https://github.com',
-    live: '',
+    github: 'https://github.com/thakurssanjali/DiceGameSimulator',
+    live: 'https://github.com/thakurssanjali/DiceGameSimulator',
     tags: ['Java', 'Game Development', 'Desktop App'],
   },
 ];
